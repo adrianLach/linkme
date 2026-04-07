@@ -1,0 +1,74 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  password  String?
+  role      String   @default("user")
+  apiKey    String?  @unique @map("api_key")
+  createdAt DateTime @default(now()) @map("created_at")
+
+  links Link[]
+
+  @@map("users")
+}
+
+model Link {
+  id         String    @id @default(uuid())
+  userId     String?   @map("user_id")
+  slug       String    @unique
+  url        String
+  title      String?
+  tags       String[]
+  password   String?
+  clickCount BigInt    @default(0) @map("click_count")
+  clickLimit BigInt?   @map("click_limit")
+  active     Boolean   @default(true)
+  expiresAt  DateTime? @map("expires_at")
+  createdAt  DateTime  @default(now()) @map("created_at")
+  updatedAt  DateTime  @updatedAt @map("updated_at")
+
+  user   User?   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  visits Visit[]
+
+  @@map("links")
+}
+
+model Visit {
+  id          BigInt   @id @default(autoincrement())
+  linkId      String?  @map("link_id")
+  ip          String?
+  country     String?
+  region      String?
+  city        String?
+  isp         String?
+  lat         Float?
+  lon         Float?
+  browser     String?
+  browserVer  String?  @map("browser_ver")
+  os          String?
+  osVer       String?  @map("os_ver")
+  deviceType  String?  @map("device_type")
+  referer     String?
+  utmSource   String?  @map("utm_source")
+  utmMedium   String?  @map("utm_medium")
+  utmCampaign String?  @map("utm_campaign")
+  createdAt   DateTime @default(now()) @map("created_at")
+
+  link Link? @relation(fields: [linkId], references: [id], onDelete: Cascade)
+
+  @@index([linkId])
+  @@index([createdAt(sort: Desc)])
+  @@index([country])
+  @@map("visits")
+}
