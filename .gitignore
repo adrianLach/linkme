@@ -2,6 +2,9 @@
 node_modules/
 .pnpm-store/
 
+# pnpm workspace / build-approval config (not needed by Vercel)
+pnpm-workspace.yaml
+
 # Next.js
 .next/
 out/
