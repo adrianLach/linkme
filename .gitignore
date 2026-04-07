@@ -27,6 +27,7 @@ dist/
 *.tsbuildinfo
 next-env.d.ts
 
+# Prisma generated client
+src/generated/
+
 # Misc
-.DS_Store
-*.pem
