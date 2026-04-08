@@ -11,7 +11,7 @@ const CreateLinkSchema = z.object({
     .string()
     .min(3)
     .max(60)
-    .regex(/^[a-zA-Z0-9_-]+$/, "Slug must be alphanumeric, dashes, or underscores")
+    .regex(/^[a-zA-Z0-9_-]+$/, "Slug must contain only alphanumeric characters, dashes, and underscores")
     .optional(),
   title: z.string().max(200).optional(),
   tags: z.array(z.string().max(50)).max(20).optional(),
