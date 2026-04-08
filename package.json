@@ -5,7 +5,9 @@
   "packageManager": "pnpm@9.15.9",
   "scripts": {
     "dev": "next dev",
-    "build": "prisma generate && prisma migrate deploy && next build",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "build": "prisma generate && pnpm test && prisma migrate deploy && next build",
     "start": "next start",
     "lint": "eslint",
     "db:generate": "prisma generate",
