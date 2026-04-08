@@ -1,3 +1,4 @@
+import Link from "next/link";
 import {
   Link2,
   BarChart3,
@@ -67,18 +68,18 @@ export default function Home() {
             <a href="#how-it-works" className="hover:text-zinc-900 dark:hover:text-zinc-50 transition-colors">How it works</a>
           </nav>
           <div className="flex items-center gap-3">
-            <a
+            <Link
               href="/login"
               className="hidden sm:inline-flex items-center rounded-lg px-4 py-2 text-sm font-medium text-zinc-700 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors"
             >
               Log in
-            </a>
-            <a
+            </Link>
+            <Link
               href="/register"
               className="inline-flex items-center rounded-lg bg-indigo-600 px-4 py-2 text-sm font-semibold text-white hover:bg-indigo-500 transition-colors"
             >
               Get started
-            </a>
+            </Link>
           </div>
         </div>
       </header>
@@ -111,12 +112,12 @@ export default function Home() {
             </p>
 
             <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
-              <a
+              <Link
                 href="/register"
                 className="inline-flex items-center gap-2 rounded-xl bg-indigo-600 px-7 py-3.5 text-base font-semibold text-white shadow-lg shadow-indigo-200 dark:shadow-indigo-900 hover:bg-indigo-500 transition-colors"
               >
                 Start for free <ArrowRight className="h-4 w-4" />
-              </a>
+              </Link>
               <a
                 href="https://github.com/adrianLach/linkme"
                 target="_blank"
@@ -224,12 +225,12 @@ export default function Home() {
               Create your free account and start shortening links with full analytics in
               minutes.
             </p>
-            <a
+            <Link
               href="/register"
               className="inline-flex items-center gap-2 rounded-xl bg-white px-8 py-4 text-base font-bold text-indigo-700 shadow-lg hover:bg-indigo-50 transition-colors"
             >
               Get started for free <ArrowRight className="h-4 w-4" />
-            </a>
+            </Link>
           </div>
         </section>
       </main>
