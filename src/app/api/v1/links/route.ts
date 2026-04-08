@@ -17,7 +17,7 @@ const CreateLinkSchema = z.object({
   tags: z.array(z.string().max(50)).max(20).optional(),
   password: z.string().min(4).optional(),
   clickLimit: z.number().int().positive().optional(),
-  expiresAt: z.iso.datetime().optional(),
+  expiresAt: z.string().datetime().optional(),
 });
 
 /** GET /api/v1/links — list authenticated user's links */

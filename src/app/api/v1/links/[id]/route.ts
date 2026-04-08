@@ -10,7 +10,7 @@ const UpdateLinkSchema = z.object({
   tags: z.array(z.string().max(50)).max(20).optional(),
   password: z.string().min(4).nullable().optional(),
   clickLimit: z.number().int().positive().nullable().optional(),
-  expiresAt: z.iso.datetime().nullable().optional(),
+  expiresAt: z.string().datetime().nullable().optional(),
   active: z.boolean().optional(),
 });
 
