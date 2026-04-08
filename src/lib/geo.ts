@@ -19,15 +19,20 @@ export async function lookupGeo(ip: string): Promise<GeoData> {
     ip === "::1" ||
     ip.startsWith("192.168.") ||
     ip.startsWith("10.") ||
-    ip.startsWith("172.") ||
     ip === "unknown"
   ) {
     return {};
   }
+  // 172.16.0.0/12 private range (172.16.x.x – 172.31.x.x)
+  const parts = ip.split(".");
+  if (parts[0] === "172") {
+    const second = parseInt(parts[1] ?? "", 10);
+    if (!isNaN(second) && second >= 16 && second <= 31) return {};
+  }
 
   try {
     const res = await fetch(
-      `http://ip-api.com/json/${encodeURIComponent(ip)}?fields=status,country,regionName,city,isp,lat,lon`,
+      `https://ip-api.com/json/${encodeURIComponent(ip)}?fields=status,country,regionName,city,isp,lat,lon`,
       { signal: AbortSignal.timeout(3000) }
     );
     if (!res.ok) return {};
